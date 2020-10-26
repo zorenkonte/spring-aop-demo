@@ -12,10 +12,6 @@ public class AopApplication {
         var run = SpringApplication.run(AopApplication.class, args);
 
         var accountDAO = run.getBean("accountDAO", AccountDAO.class);
-        var membershipDAO = run.getBean("membershipDAO", MembershipDAO.class);
-        accountDAO.addAccount();
-        accountDAO.addAccountAnother("renzo", 22, true);
-        accountDAO.addAccountAnother(new Person("tamonan", "hazel"));
-        membershipDAO.addMembership();
+        accountDAO.findAccounts().forEach(System.out::println);
     }
 }

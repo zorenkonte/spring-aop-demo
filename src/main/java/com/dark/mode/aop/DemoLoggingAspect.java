@@ -1,10 +1,13 @@
 package com.dark.mode.aop;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Aspect
 @Component
@@ -24,5 +27,14 @@ public class DemoLoggingAspect {
             }
         }
         System.out.println("=====> logging add account.");
+    }
+
+    @AfterReturning(
+            pointcut = "com.dark.mode.aop.DemoConfigAspect.findAdvice()",
+            returning = "persons"
+    )
+    public void afterReturningFind(JoinPoint joinPoint, List<Person> persons) {
+        System.out.println(joinPoint.getSignature().toShortString());
+        System.out.println(persons);
     }
 }

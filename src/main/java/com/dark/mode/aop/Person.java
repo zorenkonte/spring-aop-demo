@@ -16,4 +16,12 @@ public class Person {
     public String getLastName() {
         return lastName;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }
