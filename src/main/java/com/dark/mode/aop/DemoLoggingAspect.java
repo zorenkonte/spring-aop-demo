@@ -36,5 +36,10 @@ public class DemoLoggingAspect {
     public void afterReturningFind(JoinPoint joinPoint, List<Person> persons) {
         System.out.println(joinPoint.getSignature().toShortString());
         System.out.println(persons);
+
+        //modify data change first name to uppercase
+        if (!persons.isEmpty()) {
+            persons.forEach(person -> person.setFirstName(person.getFirstName().toUpperCase()));
+        }
     }
 }
