@@ -19,7 +19,8 @@ public class AccountDAO {
         System.out.println(getClass() + " " + person);
     }
 
-    public List<Person> findAccounts() {
+    public List<Person> findAccounts(boolean flag) {
+        if (flag) throw new RuntimeException("Oh oh! :(");
         return List.of(
                 new Person("Bringino", "Renzo"),
                 new Person("Bringino", "Ralph"),

@@ -1,9 +1,7 @@
 package com.dark.mode.aop;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -41,5 +39,19 @@ public class DemoLoggingAspect {
         if (!persons.isEmpty()) {
             persons.forEach(person -> person.setFirstName(person.getFirstName().toUpperCase()));
         }
+    }
+
+    @After("com.dark.mode.aop.DemoConfigAspect.successOrFail()")
+    public void after(JoinPoint joinPoint) {
+        System.out.println("Finally " + joinPoint.getSignature().toShortString());
+    }
+
+    @AfterThrowing(
+            pointcut = "com.dark.mode.aop.DemoConfigAspect.exception()",
+            throwing = "re"
+    )
+    public void afterThrowing(JoinPoint joinPoint, RuntimeException re) {
+        System.out.println(joinPoint.getSignature().toShortString());
+        System.out.println(re.getMessage());
     }
 }

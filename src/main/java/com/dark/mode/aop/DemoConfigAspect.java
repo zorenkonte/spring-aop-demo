@@ -9,7 +9,15 @@ public class DemoConfigAspect {
     public void logAddedAccount() {
     }
 
-    @Pointcut("execution(public * com.dark.mode.aop.*.find*())")
+    @Pointcut("execution(public * com.dark.mode.aop.*.find*(boolean))")
     public void findAdvice() {
+    }
+
+    @Pointcut("execution(public * com.dark.mode.aop.*.find*(..))")
+    public void exception() {
+    }
+
+    @Pointcut("execution(java.util.List<com.dark.mode.aop.*> find*(..))")
+    public void successOrFail() {
     }
 }

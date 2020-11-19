@@ -12,6 +12,10 @@ public class AopApplication {
         var run = SpringApplication.run(AopApplication.class, args);
 
         var accountDAO = run.getBean("accountDAO", AccountDAO.class);
-        accountDAO.findAccounts().forEach(System.out::println);
+        try {
+            accountDAO.findAccounts(false).forEach(System.out::println);
+        } catch (RuntimeException re) {
+            System.out.println("Exception :" + re.getMessage());
+        }
     }
 }
