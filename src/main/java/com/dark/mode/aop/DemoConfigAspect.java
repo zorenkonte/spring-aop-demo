@@ -20,4 +20,8 @@ public class DemoConfigAspect {
     @Pointcut("execution(java.util.List<com.dark.mode.aop.*> find*(..))")
     public void successOrFail() {
     }
+
+    @Pointcut("execution(public String getFortune())")
+    public void fortuneService() {
+    }
 }
